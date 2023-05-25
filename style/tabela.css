@@ -18,6 +18,8 @@ td {
 
 .tabela_classificacao_p2 {
     width: 70%;
+    overflow-x: overlay;
+    display: block;
 }
 
 .tabela_classificacao_jogos {
@@ -32,6 +34,7 @@ td {
 
 .organizacao_tabela_classificacao {
     display: flex;
+    
 }
 
 
@@ -42,6 +45,8 @@ td {
 
 .tabela_classificacao_p2 {
     width: 70%;
+    overflow-x: overlay;
+
 }
 
 .tabela_titulo {
@@ -136,6 +141,8 @@ g .celula_tabela_classificacao_numero_azul_claro {
 
 
 .celula_pontos_topo {
+    padding: 0 20px;
+
     width: 45px;
     height: 38px;
     text-align: center;
@@ -328,8 +335,6 @@ li {
 
 
 .legenda {
-    width: 80%;
-    margin: auto;
 
     color: #999;
     font-family: Arial, Helvetica, sans-serif;
@@ -393,6 +398,7 @@ li {
 
 
 .legenda_resultado {
+    padding-left: 5px;
     display: flex;
     align-items: center;
 }
@@ -415,7 +421,7 @@ li {
 
 }
 
-.egenda_empate {
+.legenda_empate {
     background-color: #999;
 
 
@@ -423,6 +429,60 @@ li {
 
 .legenda_derrota {
     background-color: red;
+}
+
+.conteiner_regulamento{
+width: 0px;
+height: 0px;
+}
+
+.conteiner_regulamento_exibido{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.205);
+    position: absolute;
+    z-index: 9999;
+
+}
+
+.texto_regulamento{
+    color: #06aa48;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.texto_regulamento_exibido{
+    width: 40%;
+    height: 40%;
+
+    background-color: #ededed;
+    color: #999;
+    z-index: 9999;
+}
 
 
+
+
+
+
+@media only screen and (max-width: 1000px){
+    .tabela_classificacao_jogos{
+        display: block;
+        margin: auto;
+        width: 90%;
+        
+    }
+
+    .tabela_classificao_equipes{
+        width: 100%;
+        
+    }
+
+    .tabela_jogos{
+        border: none;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+    }
 }

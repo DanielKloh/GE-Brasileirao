@@ -21,3 +21,10 @@ function fehecar_menu() {
     document.getElementById("show_menu").style.width = "0px";
     document.getElementById("fundo").classList.remove("show_fundo");
 }
+
+
+ 
+
+function regulamento(){
+    document.getElementById("regulamento").classList.add("conteiner_regulamento_exibido");
+}
