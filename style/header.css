@@ -286,6 +286,7 @@ input.camposBusca:empty {
     height: 310px;
     position: absolute;
     justify-content: center;
+    cursor: pointer;
 
     display: none;
 }
@@ -293,9 +294,6 @@ input.camposBusca:empty {
 .mosaico:hover {
     .mosaico_conteiner {
         display: block;
-
-        
-
     }
     .mosaico_conteiner_topo {
             display: block;
@@ -335,10 +333,26 @@ input.camposBusca:empty {
 }
 
 .logo_time_mosaico {
-    padding: 9px;
+    margin: 9px;
     width: 35px;
     height: 35px;
 }
+
+.serieA{
+    display: none;
+}
+
+.serieB{
+    display: none;
+}
+
+.serieC{
+    display: none;
+}
+
+
+
+
 
 .conteiner2 {
     background-color: #06aa48;
