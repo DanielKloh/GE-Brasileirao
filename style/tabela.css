@@ -23,6 +23,8 @@ td {
 }
 
 .tabela_classificacao_jogos {
+    padding-top: 30px;
+
     width: 80%;
     display: flex;
     margin: auto;
@@ -465,7 +467,76 @@ height: 0px;
 
 
 
+.conteiner_jogador{
+    width: 80%;
+    margin: auto;
+    padding-bottom: 30px;
+}
 
+.tabela_jogadores_conteiner{
+    height: 390px;
+    overflow-y: auto;
+}
+
+.tabela_jogadores{
+    width: 100%;
+
+
+}
+
+.celula_tabela_jogadores{
+    width: 20px;
+    height: 60px;   
+
+}
+
+.classificacao_jogador{
+    
+    color: #999;
+    width: 1px;
+    text-align: center;
+    font-size: 30px;
+    font-family: 'opensans', sans-serif;
+}
+
+.imagem_jogador{
+    border-radius: 100px;
+    height: 50px;
+    padding: 7px;
+}
+
+.imagem_logo_time{
+    height: 30px;
+}
+
+.jogador_info{
+    
+    padding:  0 20px;
+    margin: 0;
+}
+.nome_jogador{
+    font: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #030303;
+    font-size: 20px;
+}
+
+.nome_posicao{
+    font: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    width: 100px;
+    color: #999;
+}
+
+
+.gols{
+    margin-left: auto;
+    padding-right: 20px;
+    color: #333;
+    font-family: 'opensans-bold',arial,sans-serif;
+    font-size: 26px;
+}
 @media only screen and (max-width: 1000px){
     .tabela_classificacao_jogos{
         display: block;
@@ -484,5 +555,11 @@ height: 0px;
         margin: 0;
         padding: 0;
         width: 100%;
+    }
+}
+
+@media only screen and (max-width:1350px) {
+    .data_jogo{
+        font-size: 0.65em;
     }
 }

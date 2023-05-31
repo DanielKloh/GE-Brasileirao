@@ -310,6 +310,7 @@ input.camposBusca:empty {
 }
 
 .mosaico_label {
+    border-radius: 2px;
     font-weight: 700;
     color: #999;
     font: bold;
@@ -317,7 +318,7 @@ input.camposBusca:empty {
     font-family: Arial, Helvetica, sans-serif;
     margin-top: 5px;
     height: 13px;
-    padding: 5px 9px;
+    padding: 3px 9px;
     cursor: pointer;
     border: solid #999 1px;
 }
@@ -390,11 +391,6 @@ input.camposBusca:empty {
     cursor: pointer;
 }
 
-.estatistica {
-    margin-left: 2px;
-    margin-right: 20px;
-    cursor: pointer;
-}
 
 .VAR {
     margin-left: 2px;
@@ -440,6 +436,9 @@ input.camposBusca:empty {
 
 @media only screen and (max-width: 1360px) {
     .conteiner {
+        padding: 0;
+    }
+    .conteiner_link{
         padding: 0;
     }
 }
