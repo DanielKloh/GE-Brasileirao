@@ -537,17 +537,17 @@ height: 0px;
     font-family: 'opensans-bold',arial,sans-serif;
     font-size: 26px;
 }
+
 @media only screen and (max-width: 1000px){
+
     .tabela_classificacao_jogos{
         display: block;
         margin: auto;
         width: 90%;
-        
     }
 
     .tabela_classificao_equipes{
         width: 100%;
-        
     }
 
     .tabela_jogos{
@@ -558,7 +558,8 @@ height: 0px;
     }
 }
 
-@media only screen and (max-width:1350px) {
+@media only screen and (max-width:1360px) {
+    
     .data_jogo{
         font-size: 0.65em;
     }

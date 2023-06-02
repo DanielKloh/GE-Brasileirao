@@ -2,11 +2,9 @@ body {
     margin: 0;
     padding: 0;
 }
-
-header {
+header{
     background-color: #06aa48;
 }
-
 .show_menu_text {
     background-color: #fafafa;
     font-size: 25px;
@@ -56,8 +54,9 @@ header {
     display: flex;
     align-items: center;
     font-size: 17px;
-    padding-left: 7%;
-    padding-right: 7%;
+    width: 1350px;
+
+    margin: 0 auto;
 
     font-family: Arial, Helvetica, sans-serif;
     background-color: #ededed;
@@ -184,14 +183,15 @@ header {
 
 
 .conteiner {
+    width: 1350px;
+    margin: 0 auto;
     background-color: #06aa48;
     color: #ededed;
     height: 70px;
     display: flex;
     align-items: center;
     border-bottom: solid #1fb35b 1px;
-    padding-left: 7%;
-    padding-right: 7%;
+
 }
 
 .menu {
@@ -264,7 +264,7 @@ input.camposBusca:empty {
 }
 
 .brasileirao {
-    margin: auto;
+    margin: 0 auto;
     font-size: 30px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -297,7 +297,7 @@ input.camposBusca:empty {
     }
     .mosaico_conteiner_topo {
             display: block;
-        }
+    }
 }
 
 .mosaico_conteiner:hover {
@@ -356,17 +356,17 @@ input.camposBusca:empty {
 
 
 .conteiner2 {
+    width: 1350px;
+    margin: 0 auto;
     background-color: #06aa48;
     color: #83d5a4;
     height: 50px;
     display: flex;
     align-items: center;
     font-size: 20px;
-    padding-left: 7%;
-    padding-right: 7%;
+
     font-family: Arial, Helvetica, sans-serif;
-    width: 85%;
-    margin: auto;
+
 }
 
 .conteiner2_elementos:hover {
@@ -403,6 +403,7 @@ input.camposBusca:empty {
 
 
 @media only screen and (max-width: 1064px) {
+
     .ge {
         padding: 0;
         margin: 0;
@@ -416,18 +417,13 @@ input.camposBusca:empty {
         display: none;
     }
 
-
     .buscar {
         display: none;
     }
-
-
 }
 
 
 @media only screen and (max-width: 763px) {
-
-
 
     .conteiner_link {
         display: none !important;
@@ -435,7 +431,9 @@ input.camposBusca:empty {
 }
 
 @media only screen and (max-width: 1360px) {
+
     .conteiner {
+        width: 100%;
         padding: 0;
     }
     .conteiner_link{
