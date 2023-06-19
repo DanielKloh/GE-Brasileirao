@@ -3,11 +3,24 @@ body {
     padding: 0;
 }
 
-
+.imagem_logo{
+    width: 30px;
+    height: 30px;
+}
 table {
     border-spacing: 0;
 }
 
+.imagemLogo{
+    height: 30px;
+    width: 30px;
+}
+.imagemCentralizada{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 51px;
+}
 td {
     border-bottom: solid #ddd7d7 1px;
 }
@@ -88,6 +101,7 @@ tr {
     text-align: center;
     font-size: 18px;
     font-family: 'opensans', sans-serif;
+    
 }
 
 .celula_tabela_classificacao_numero_azul {
@@ -119,7 +133,7 @@ g .celula_tabela_classificacao_numero_azul_claro {
     color: #030303;
 }
 
-.celula_tabela_classificacao_resultado {
+.celula_tabela_classificacao_pontuacao {
     width: 16px;
 
     text-align: center;
@@ -130,15 +144,25 @@ g .celula_tabela_classificacao_numero_azul_claro {
 
 .celula_tabela_classificacao_resultado_icone {
     text-align: center;
-    width: 16px;
+    align-items: center;
+}
+.celula_tabela_classificacao_icon {
+    margin-right: 5px;
+    height: 10px;
+    width: 10px;
+}
+.resultado_ganhou {
+    color: green;
 }
 
-.celula_tabela_classificacao_icon {
+.resultado_perdeu {
+    color: red;    
+}
+
+.resultado_empatou {
     color: #999;
     background-color: #999;
-    margin-right: 5px;
-    height: 5px;
-    width: 5px;
+    border: solid #999 1px;
 }
 
 
@@ -190,8 +214,19 @@ g .celula_tabela_classificacao_numero_azul_claro {
     margin-left: 2px;
     height: 8px;
     width: 8px;
-    background-color: green;
     border-radius: 50%;
+}
+
+.bolinha_ultimos_jogos_ganhou{
+    background-color: green;
+
+}
+.bolinha_ultimos_jogos_perdeu{
+    background-color: red;
+
+}
+.bolinha_ultimos_jogos_empatou{
+    background-color: gray;
 
 }
 
