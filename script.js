@@ -1,289 +1,253 @@
 window.onload = function () {
 
-    let names = ["botafogo", "Flamengo", "bahia", "Vasco", "coritiba", "Corinthians"];
-    let logos = ["https://s.sde.globo.com/media/organizations/2019/02/04/botafogo-svg.svg", "https://s.sde.globo.com/media/organizations/2018/04/10/Flamengo-2018.svg", "https://s.sde.globo.com/media/organizations/2018/03/11/bahia.svg", "https://s.sde.globo.com/media/organizations/2021/09/04/vasco_SVG.svg", "https://s.sde.globo.com/media/organizations/2018/03/11/coritiba.svg", "https://s.sde.globo.com/media/organizations/2019/09/30/Corinthians.svg"];
-    let dataJogos = ["SÁB 13/05/2023","SÁB 13/05/2023","SÁB 13/05/2023"];
-    let localJogos = ["ITAIPAVA ARENA FONTE NOVA","ITAIPAVA ARENA FONTE NOVA","ITAIPAVA ARENA FONTE NOVA"];
-    let horaJogos = ["16:00","16:00","16:00"];
-    const times = {
-        name: names,
-        logo: logos,
-        data : dataJogos,
-        hora : horaJogos,
-        local : localJogos
-    }
-
-    const timesDados = []
-    timesDados[0] = {
-        p: gerarNumeroAleatorio(),
-        j: gerarNumeroAleatorio(),
-        v: gerarNumeroAleatorio(),
-        e: gerarNumeroAleatorio(),
-        d: gerarNumeroAleatorio(),
-        gp: gerarNumeroAleatorio(),
-        gc: gerarNumeroAleatorio(),
-        sg: gerarNumeroAleatorio(),
-        porcentagem: gerarNumeroAleatorio(),
-        ultimosJogos: [gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres()],
-    }
-    timesDados[1] = {
-        p: gerarNumeroAleatorio(),
-        j: gerarNumeroAleatorio(),
-        v: gerarNumeroAleatorio(),
-        e: gerarNumeroAleatorio(),
-        d: gerarNumeroAleatorio(),
-        gp: gerarNumeroAleatorio(),
-        gc: gerarNumeroAleatorio(),
-        sg: gerarNumeroAleatorio(),
-        porcentagem: gerarNumeroAleatorio(),
-        ultimosJogos: [gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres()],
-    }
-    timesDados[2] = {
-        p: gerarNumeroAleatorio(),
-        j: gerarNumeroAleatorio(),
-        v: gerarNumeroAleatorio(),
-        e: gerarNumeroAleatorio(),
-        d: gerarNumeroAleatorio(),
-        gp: gerarNumeroAleatorio(),
-        gc: gerarNumeroAleatorio(),
-        sg: gerarNumeroAleatorio(),
-        porcentagem: gerarNumeroAleatorio(),
-        ultimosJogos: [gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres()],
-    }
-    timesDados[3] = {
-        p: gerarNumeroAleatorio(),
-        j: gerarNumeroAleatorio(),
-        v: gerarNumeroAleatorio(),
-        e: gerarNumeroAleatorio(),
-        d: gerarNumeroAleatorio(),
-        gp: gerarNumeroAleatorio(),
-        gc: gerarNumeroAleatorio(),
-        sg: gerarNumeroAleatorio(),
-        porcentagem: gerarNumeroAleatorio(),
-        ultimosJogos: [gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres()],
-    }
-    timesDados[4] = {
-        p: gerarNumeroAleatorio(),
-        j: gerarNumeroAleatorio(),
-        v: gerarNumeroAleatorio(),
-        e: gerarNumeroAleatorio(),
-        d: gerarNumeroAleatorio(),
-        gp: gerarNumeroAleatorio(),
-        gc: gerarNumeroAleatorio(),
-        sg: gerarNumeroAleatorio(),
-        porcentagem: gerarNumeroAleatorio(),
-        ultimosJogos: [gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres()],
-    }
-    timesDados[5] = {
-        p: gerarNumeroAleatorio(),
-        j: gerarNumeroAleatorio(),
-        v: gerarNumeroAleatorio(),
-        e: gerarNumeroAleatorio(),
-        d: gerarNumeroAleatorio(),
-        gp: gerarNumeroAleatorio(),
-        gc: gerarNumeroAleatorio(),
-        sg: gerarNumeroAleatorio(),
-        porcentagem: gerarNumeroAleatorio(),
-        ultimosJogos: [gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres(), gerarNumeroAleatorioDeUmATres()],
-    }
 
 
+    $.ajax({
 
-    for (let i = 0; i <= 5; i++) {
+        type: "GET",
+        url: "https://api.api-futebol.com.br/v1/campeonatos/14/tabela",
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        contentType: 'json',
+        dataType: 'json',
+        success: function (response) {
+            //Se a solicitação for feita com sucesso, a resposta representará os dados
+            populaTabela(response);
+        },
+        done: function (msg) {
 
-        let resultado = gerarNumeroAleatorioDeUmATres();
-        let linha = document.createElement("tr");
-        let nomeTime = document.createElement("td");
-        let logoTime = document.createElement("img");
-        let pontuacao = document.createElement("td");
-        let identificador = document.createElement("td");
-        let conteinerLogo = document.createElement("td");
-        let resultadoConteiner = document.createElement("td");
-        let resultadoIcon = document.createElement("img");
-
-        identificador.setAttribute("class", "celula_tabela_classificacao_numero_azul");
-        nomeTime.setAttribute("class", "celula_tabela_classificacao_time");
-        pontuacao.setAttribute("class", "celula_tabela_classificacao_pontuacao");
-        logoTime.setAttribute("src", times.logo[i]);
-        logoTime.setAttribute("class", "imagemLogo");
-        conteinerLogo.setAttribute("class", "imagemCentralizada");
-
-        if (resultado === 1) {
-
-            resultadoIcon.setAttribute("class", "celula_tabela_classificacao_icon resultado_ganhou");
-            resultadoIcon.setAttribute("src", "image/seta-para-cima.png");
+        },
+        error: function (msg) {
 
         }
-        else if (resultado === 2) {
+    });
 
-            resultadoIcon.setAttribute("class", "celula_tabela_classificacao_icon resultado_perdeu");
-            resultadoIcon.setAttribute("src", "image/seta-para-baixo.png");
+
+    $.ajax({
+
+        type: "GET",
+        url: "https://api.api-futebol.com.br/v1/campeonatos/14/rodadas/14",
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        contentType: 'json',
+        dataType: 'json',
+        success: function (response) {
+            //Se a solicitação for feita com sucesso, a resposta representará os dados
+            populaOutraTabela(response);
+        },
+        done: function (msg) {
+
+        },
+        error: function (msg) {
+
         }
-        else {
-            resultadoIcon.setAttribute("class", " celula_tabela_classificacao_icon resultado_empatou");
-            resultadoIcon.setAttribute("src", "image/square.svg");
-        }
+    });
 
+    function populaTabela(response) {
 
-        identificador.innerText = i + 1;
-        nomeTime.innerText = times.name[i];
-        pontuacao.innerText = "0";
-        logoTime.innerText = times.logo[i];
+        for (let i = 0; i < response.length; i++) {
 
+            let resultado = response[i].variacao_posicao;
+            let linha = document.createElement("tr");
+            let nomeTime = document.createElement("td");
+            let logoTime = document.createElement("img");
+            let pontuacao = document.createElement("td");
+            let identificador = document.createElement("td");
+            let conteinerLogo = document.createElement("td");
+            let resultadoConteiner = document.createElement("td");
+            let resultadoIcon = document.createElement("img");
 
-        tabela_classificacao.appendChild(linha);
-        linha.appendChild(identificador);
-        linha.appendChild(nomeTime);
-        linha.appendChild(pontuacao);
-        linha.appendChild(conteinerLogo);
-        conteinerLogo.appendChild(logoTime);
-        linha.appendChild(resultadoConteiner);
-        resultadoConteiner.appendChild(resultadoIcon);
-    }
+            identificador.setAttribute("class", "celula_tabela_classificacao_numero_azul");
+            nomeTime.setAttribute("class", "celula_tabela_classificacao_time");
+            pontuacao.setAttribute("class", "celula_tabela_classificacao_pontuacao");
+            logoTime.setAttribute("src", response[i].time.escudo); //
+            logoTime.setAttribute("class", "imagemLogo");
+            conteinerLogo.setAttribute("class", "imagemCentralizada");
 
-    for (let i = 0; i <= 5; i++) {
-        let linha = document.createElement("tr");
-        let P = document.createElement("td");
-        let J = document.createElement("td");
-        let V = document.createElement("td");
-        let E = document.createElement("td");
-        let D = document.createElement("td");
-        let GP = document.createElement("td");
-        let GC = document.createElement("td");
-        let SG = document.createElement("td");
-        let porcentagem = document.createElement("td");
-        let ultimosJogos = document.createElement("td");
+            if (resultado >= 1) {
 
-        let bola1 = document.createElement("span");
-        let bola2 = document.createElement("span");
-        let bola3 = document.createElement("span");
-        let bola4 = document.createElement("span");
-        let bola5 = document.createElement("span");
-        let bolas = [bola1, bola2, bola3, bola4, bola5]
+                resultadoIcon.setAttribute("class", "celula_tabela_classificacao_icon resultado_ganhou");
+                resultadoIcon.setAttribute("src", "image/seta-para-cima.png");
 
-        P.setAttribute("class", "celula_pontos celula_pontos_negrito");
-        J.setAttribute("class", "celula_pontos");
-        V.setAttribute("class", "celula_pontos");
-        E.setAttribute("class", "celula_pontos");
-        D.setAttribute("class", "celula_pontos");
-        GP.setAttribute("class", "celula_pontos");
-        GC.setAttribute("class", "celula_pontos");
-        SG.setAttribute("class", "celula_pontos");
-        porcentagem.setAttribute("class", "celula_pontos");
-        ultimosJogos.setAttribute("class", "celula_pontos_bolinha")
-
-
-
-
-
-        P.innerText = timesDados[i].p;
-        J.innerText = timesDados[i].j;
-        V.innerText = timesDados[i].v;
-        E.innerText = timesDados[i].e;
-        D.innerText = timesDados[i].d;
-        GP.innerText = timesDados[i].gp;
-        GC.innerText = timesDados[i].gc;
-        SG.innerText = timesDados[i].sg;
-        porcentagem.innerText = timesDados[i].porcentagem;
-
-
-
-        tabela_resultados.appendChild(linha);
-        linha.appendChild(P);
-        linha.appendChild(J);
-        linha.appendChild(V);
-        linha.appendChild(E);
-        linha.appendChild(D);
-        linha.appendChild(GP);
-        linha.appendChild(GC);
-        linha.appendChild(SG);
-        linha.appendChild(porcentagem);
-        linha.appendChild(ultimosJogos);
-
-
-        for (let j = 0; j < 5; j++) {
-            if (timesDados[i].ultimosJogos[j] == 1) {
-                bolas[j].setAttribute("class", "bolinha_ultimos_jogos bolinha_ultimos_jogos_ganhou");
             }
-            else if (timesDados[i].ultimosJogos[j] == 2) {
-                bolas[j].setAttribute("class", "bolinha_ultimos_jogos bolinha_ultimos_jogos_perdeu");
+            else if (resultado <= -1) {
+
+                resultadoIcon.setAttribute("class", "celula_tabela_classificacao_icon resultado_perdeu");
+                resultadoIcon.setAttribute("src", "image/seta-para-baixo.png");
             }
             else {
-                bolas[j].setAttribute("class", "bolinha_ultimos_jogos bolinha_ultimos_jogos_empatou");
+                resultadoIcon.setAttribute("class", " celula_tabela_classificacao_icon resultado_empatou");
+                resultadoIcon.setAttribute("src", "image/square.svg");
             }
+
+
+            identificador.innerText = i + 1;
+            nomeTime.innerText = response[i].time.nome_popular//
+            pontuacao.innerText = response[i].variacao_posicao;
+            logoTime.innerText = response[i].time.escudo; //
+
+
+            tabela_classificacao.appendChild(linha);
+            linha.appendChild(identificador);
+            linha.appendChild(conteinerLogo);
+            conteinerLogo.appendChild(logoTime);
+            linha.appendChild(nomeTime);
+            linha.appendChild(pontuacao);
+
+            linha.appendChild(resultadoConteiner);
+            resultadoConteiner.appendChild(resultadoIcon);
         }
-        ultimosJogos.appendChild(bola1);
-        ultimosJogos.appendChild(bola2);
-        ultimosJogos.appendChild(bola3);
-        ultimosJogos.appendChild(bola4);
-        ultimosJogos.appendChild(bola5);
+
+        for (let i = 0; i < response.length; i++) {
+            let linha = document.createElement("tr");
+            let pontso = document.createElement("td");
+            let jogos = document.createElement("td");
+            let vitorias = document.createElement("td");
+            let empates = document.createElement("td");
+            let derrotas = document.createElement("td");
+            let golsPro = document.createElement("td");
+            let golsContra = document.createElement("td");
+            let saldoGols = document.createElement("td");
+            let aproveitamento = document.createElement("td");
+            let ultimosJogos = document.createElement("td");
+
+            let bola1 = document.createElement("span");
+            let bola2 = document.createElement("span");
+            let bola3 = document.createElement("span");
+            let bola4 = document.createElement("span");
+            let bola5 = document.createElement("span");
+            let bolas = [bola1, bola2, bola3, bola4, bola5]
+
+            pontso.setAttribute("class", "celula_pontos celula_pontos_negrito");
+            jogos.setAttribute("class", "celula_pontos");
+            vitorias.setAttribute("class", "celula_pontos");
+            empates.setAttribute("class", "celula_pontos");
+            derrotas.setAttribute("class", "celula_pontos");
+            golsPro.setAttribute("class", "celula_pontos");
+            golsContra.setAttribute("class", "celula_pontos");
+            saldoGols.setAttribute("class", "celula_pontos");
+            aproveitamento.setAttribute("class", "celula_pontos");
+            ultimosJogos.setAttribute("class", "celula_pontos_bolinha");
+
+
+
+            pontso.innerText = response[i].pontos; //
+            jogos.innerText = response[i].jogos; //
+            vitorias.innerText = response[i].vitorias; //
+            empates.innerText = response[i].empates; //
+            derrotas.innerText = response[i].derrotas; //
+            golsPro.innerText = response[i].gols_pro; //
+            golsContra.innerText = response[i].gols_contra; //
+            saldoGols.innerText = response[i].saldo_gols; //
+            aproveitamento.innerText = response[i].aproveitamento; //
+
+
+
+            tabela_resultados.appendChild(linha);
+            linha.appendChild(pontso);
+            linha.appendChild(jogos);
+            linha.appendChild(vitorias);
+            linha.appendChild(empates);
+            linha.appendChild(derrotas);
+            linha.appendChild(golsPro);
+            linha.appendChild(golsContra);
+            linha.appendChild(saldoGols);
+            linha.appendChild(aproveitamento);
+            linha.appendChild(ultimosJogos);
+
+
+            for (let j = 0; j < response.length; j++) {
+                if (response[i].ultimos_jogos[j] === "v") {
+                    bolas[j].setAttribute("class", "bolinha_ultimos_jogos bolinha_ultimos_jogos_ganhou");  //
+                }
+                else if (response[i].ultimos_jogos[j] === "d") {
+                    bolas[j].setAttribute("class", "bolinha_ultimos_jogos bolinha_ultimos_jogos_perdeu"); //
+                }
+                else if (response[i].ultimos_jogos[j] === "e") {
+                    bolas[j].setAttribute("class", "bolinha_ultimos_jogos bolinha_ultimos_jogos_empatou"); //
+                }
+            }
+            ultimosJogos.appendChild(bola1);
+            ultimosJogos.appendChild(bola2);
+            ultimosJogos.appendChild(bola3);
+            ultimosJogos.appendChild(bola4);
+            ultimosJogos.appendChild(bola5);
+        }
+
+    }
+
+    function populaOutraTabela(response) {
+
+        for (let i = 0; i < response.length; i++) {
+
+            let lista = document.createElement("li");
+            let jogosContainer = document.createElement("div");
+            let nomeTimeEscritoMandante = document.createElement("p");
+            let nomeTimeEscritoVisitante = document.createElement("p");
+            let nomeTimeMandante = document.createElement("div");
+            let nomeTimeVisitante = document.createElement("div");
+            let logoTimeMandante = document.createElement("img");
+            let logoTimeVisitante = document.createElement("img");
+            let jogosConteinerTime = document.createElement("div");
+            let jogosConteinerSegundoTime = document.createElement("div");
+            let rodada = document.getElementById("rodada");
+            let iconX = document.createElement("img");
+            let dadosJogos = document.createElement("div");
+            let dataJogos = document.createElement("div");
+            let localJogos = document.createElement("div");
+            let horaJogos = document.createElement("div");
+
+
+            jogosConteinerTime.setAttribute("class", "jogos_conteiner_times");
+            jogosConteinerSegundoTime.setAttribute("class", "jogos_conteiner_times");
+            nomeTimeMandante.setAttribute("class", "nome_times");
+            nomeTimeVisitante.setAttribute("class", "nome_times");
+            logoTimeMandante.setAttribute("class", "logo_time");
+            logoTimeVisitante.setAttribute("class", "logo_time");
+            logoTimeMandante.setAttribute("src", response[i].partidas.time_mandante.escudo); //
+            logoTimeVisitante.setAttribute("src", response[i].partidas.time_visitante.escudo); //
+            iconX.setAttribute("src", "image/icondeX.png");
+            jogosContainer.setAttribute("class", "jogos_conteiner");
+            dadosJogos.setAttribute("class", "data_jogo");
+            dataJogos.setAttribute("class", "data_jogo_data");
+            horaJogos.setAttribute("class", "data_jogo_data");
+
+
+            nomeTimeEscritoMandante.innerText = response[i].partidas.time_mandante.nome_popular;
+            nomeTimeEscritoVisitante.innerText = response[i].partidas.time_visitante.nome_popular;
+            dataJogos.innerText = response[i].partidas.data_realizacao; //
+            localJogos.innerText = response[i].partidas.estadio.nome_popular; //
+            horaJogos.innerText = response[i].partidas.hora_realizacao; //
+            rodada.innerText = response[i].nome;
+
+
+            lista_jogos.appendChild(lista);
+
+            lista.appendChild(dadosJogos);
+            dadosJogos.appendChild(dataJogos);
+            dadosJogos.appendChild(localJogos);
+            dadosJogos.appendChild(horaJogos);
+
+            lista.appendChild(jogosContainer);
+            jogosContainer.appendChild(jogosConteinerTime);
+
+            jogosConteinerTime.appendChild(nomeTimeMandante);
+            nomeTimeMandante.appendChild(nomeTimeEscritoMandante);
+            nomeTimeMandante.appendChild(logoTimeMandante);
+
+            jogosConteinerTime.appendChild(iconX);
+
+            jogosConteinerTime.appendChild(nomeTimeVisitante);
+            nomeTimeVisitante.appendChild(logoTimeVisitante);
+            nomeTimeVisitante.appendChild(nomeTimeEscritoVisitante);
+
+        }
     }
 
 
-    for (let i = 0; i < 3; i++) {
-        let lista = document.createElement("li");
-        let jogosContainer = document.createElement("div");
-        let nomeTimeEscrito = document.createElement("p");
-        let nomeTimeEscrito2 = document.createElement("p");
-        let nomeTime = document.createElement("div");
-        let nomeTime2 = document.createElement("div");
-        let logoTime = document.createElement("img");
-        let logoTime2 = document.createElement("img");
-        let jogosConteinerTime = document.createElement("div");
-        let jogosConteinerSegundoTime = document.createElement("div");
-        let iconX = document.createElement("img");
-        let dadosJogos = document.createElement("div");
-        let dataJogos = document.createElement("div");
-        let localJogos = document.createElement("div");
-        let horaJogos = document.createElement("div");
-
-
-        jogosConteinerTime.setAttribute("class", "jogos_conteiner_times");
-        jogosConteinerSegundoTime.setAttribute("class", "jogos_conteiner_times");
-        nomeTime.setAttribute("class", "nome_times");
-        nomeTime2.setAttribute("class", "nome_times");
-        logoTime.setAttribute("class", "logo_time");
-        logoTime2.setAttribute("class", "logo_time");
-        logoTime.setAttribute("src", times.logo[i]);
-        logoTime2.setAttribute("src", times.logo[i]);
-        iconX.setAttribute("src", "image/icondeX.png");
-        jogosContainer.setAttribute("class", "jogos_conteiner");
-        dadosJogos.setAttribute("class","data_jogo");
-        dataJogos.setAttribute("class","data_jogo_data");
-        horaJogos.setAttribute("class","data_jogo_data");
-
-
-        nomeTimeEscrito.innerText = times.name[i];
-        nomeTimeEscrito2.innerText = times.name[i];
-        dataJogos.innerText = times.data[i];
-        localJogos.innerText = times.local[i];
-        horaJogos.innerText = times.hora[i];
-
-
-        lista_jogos.appendChild(lista);
-
-        lista.appendChild(dadosJogos);
-        dadosJogos.appendChild(dataJogos);
-        dadosJogos.appendChild(localJogos);
-        dadosJogos.appendChild(horaJogos);
-
-        lista.appendChild(jogosContainer);
-        jogosContainer.appendChild(jogosConteinerTime);
-
-        jogosConteinerTime.appendChild(nomeTime);
-        nomeTime.appendChild(nomeTimeEscrito);
-        nomeTime.appendChild(logoTime);
-
-        jogosConteinerTime.appendChild(iconX);
-
-        jogosConteinerTime.appendChild(nomeTime2);
-        nomeTime2.appendChild(logoTime2);
-        nomeTime2.appendChild(nomeTimeEscrito2);
 
 
 
 
-    }
+
 }
 
 
