@@ -198,7 +198,7 @@
 
 
                     </li>
-                    
+
                     <li id="serieC" class="serieC">
                         <div class="mosaico_image_conteiner">
                             <img src="https://s.sde.globo.com/media/organizations/2018/03/11/fluminense.svg"
@@ -404,19 +404,23 @@
 
                     <div>
                         <nav class="navegacao_jogos">
-                            <span class="navegacao_jogos"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+                            <span id="seteaEsquerda" ondblclick="rodadaAnterior()" class="navegacao_jogos_seta"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                     height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                                 </svg> </span>
-                            <span class="navegacao_texto_jogos">7ª RODADA</span>
-                            <span class="navegacao_direita_jogos"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
+
+                            <div class="navegacao_texto_jogos" id="rodada"></div>
+
+                            <span onclick="proximaRodada()" class="navegacao_jogos_seta"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                     height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                                 </svg></span>
                         </nav>
-
+                        <input type="hidden" id="proximaRodada">
+                        <input type="hidden" id="rodadaAnterior">
+                        
                         <ul id="lista_jogos" class="lista_jogos">
                         </ul>
                     </div>
@@ -429,9 +433,8 @@
         </section>
 
 
+        <!-- tabela dos jogadores -->
         <section>
-
-            <!-- tabela dos jogadores -->
 
             <div class="conteiner_jogador">
                 <h2 class="tabela_titulo">PRINCIPAIS ARTILHEIROS</h2>
@@ -580,7 +583,7 @@
 
             <div class="conteiner_footer">
 
-                <div >
+                <div>
 
                     <div class="diretorion_footer_esquerda">
                         <img src="image/GE.jpg" alt="">
@@ -592,14 +595,15 @@
                     </div>
 
                     <div>
-                        <a class="footer_texto_link" href="https://github.com/DanielKloh">© Copyright 2023 Daniel Kloh</a>
+                        <a class="footer_texto_link" href="https://github.com/DanielKloh">© Copyright 2023 Daniel
+                            Kloh</a>
                     </div>
                 </div>
 
 
 
 
-                <div class="diretorion_footer_direita" >
+                <div class="diretorion_footer_direita">
 
                     <div class="footer_texto">globo</div>
 
@@ -621,9 +625,8 @@
 
 
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
 
-<script src="script.js">
-
-</script>
+<script src="script.js"></script>
 
 </html>

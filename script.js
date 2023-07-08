@@ -2,7 +2,7 @@ window.onload = function () {
 
     buscaInformacoesTabela();
 
-    buscaInformacoesRodada(14);
+    buscaDadosRodada(2);
 }
 
 function buscaInformacoesTabela() {
@@ -26,6 +26,141 @@ function buscaInformacoesTabela() {
 
     });
 }
+
+function rodadaAnterior() {
+    var rodadaAnterior= document.getElementById("rodadaAnterior").value;
+    if(rodadaAnterior != null && rodadaAnterior != ''){
+        buscaDadosRodada(rodadaAnterior);
+    }
+}
+
+
+function proximaRodada() {
+    var proximaRodada= document.getElementById("proximaRodada").value;
+    if(proximaRodada != null && proximaRodada != ''){
+        buscaDadosRodada(proximaRodada);
+    }
+}
+
+
+function buscaInformacoesRodadas() {
+    $.ajax({
+
+        type: "GET",
+        url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas",
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        contentType: 'json',
+        dataType: 'json',
+        success: function (response) {
+            //Se a solicitação for feita com sucesso, a resposta representará os dados
+           // buscaDadosRodada(response);
+        },
+        done: function (msg) {
+
+        },
+        error: function (msg) {
+
+        }
+    });
+}
+
+function buscaDadosRodada(rodadaId){
+    $.ajax({
+        type: "GET",
+        url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + rodadaId,
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        contentType: 'json',
+        dataType: 'json',
+        success: function (response) {
+            //Se a solicitação for feita com sucesso, a resposta representará os dados
+            populaOutraTabela(response);
+        },
+        done: function (msg) {
+
+        },
+        error: function (msg) {
+
+        }
+    });
+}
+
+
+// function proximaTabela(response) {
+//     for (let i = 0; i <= response.length; i++) {
+
+
+//         if (response[i].status === "agendada") {
+//             $.ajax({
+
+//                 type: "GET",
+//                 url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + response[i].proxima_rodada,
+//                 headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+//                 contentType: 'json',
+//                 dataType: 'json',
+//                 success: function (response) {
+
+//                     populaOutraTabela(response);
+//                 },
+//                 done: function (msg) {
+
+//                 },
+//                 error: function (msg) {
+
+//                 }
+//             });
+//             break;
+//         }
+
+//         else if (response[i].status === "encerrada") {
+
+//             $.ajax({
+
+//                 type: "GET",
+//                 url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + response[i].proxima_rodada,
+//                 headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+//                 contentType: 'json',
+//                 dataType: 'json',
+//                 success: function (response) {
+//                     //Se a solicitação for feita com sucesso, a resposta representará os dados
+//                     populaOutraTabela(response);
+//                 },
+//                 done: function (msg) {
+
+//                 },
+//                 error: function (msg) {
+
+//                 }
+//             });
+//             break;
+
+//         }
+
+//         else if (response[i].status === "andamento") {
+
+//             $.ajax({
+
+//                 type: "GET",
+//                 url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + response[i].proxima_rodada,
+//                 headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+//                 contentType: 'json',
+//                 dataType: 'json',
+//                 success: function (response) {
+//                     //Se a solicitação for feita com sucesso, a resposta representará os dados
+//                     populaOutraTabela(response);
+//                 },
+//                 done: function (msg) {
+
+//                 },
+//                 error: function (msg) {
+
+//                 }
+//             });
+//             break;
+//         }
+
+//     }
+// }
+
 
 function populaTabela(response) {
 
@@ -156,16 +291,26 @@ function populaTabela(response) {
         ultimosJogos.appendChild(bola3);
         ultimosJogos.appendChild(bola4);
         ultimosJogos.appendChild(bola5);
-
-
-
-
-
     }
-
 }
 
 function populaOutraTabela(response) {
+
+    limpaTabela();
+
+    if(response.proxima_rodada != null)
+    {
+        document.getElementById("proximaRodada").value = response.proxima_rodada.rodada;
+    }else{
+        document.getElementById("proximaRodada").value = null;
+    }
+
+    if(response.rodada_anterior != null)
+    {
+        document.getElementById("rodadaAnterior").value = response.rodada_anterior.rodada;
+    }else{
+        document.getElementById("rodadaAnterior").value = null;
+    }
 
     for (let i = 0; i < response.partidas.length; i++) {
 
@@ -207,18 +352,35 @@ function populaOutraTabela(response) {
         placarTimeVisitante.setAttribute("class", "placarTime");
         resultadoJogo.setAttribute("class", "resultadoJogo");
 
+        if(response.partidas[i].data_realizacao == null){
+            nomeTimeEscritoMandante.innerText = response.partidas[i].time_mandante.sigla;
+            nomeTimeEscritoVisitante.innerText = response.partidas[i].time_visitante.sigla;
+            dataJogos.innerText = "DOM 31/02/2023"//response.partidas[i].data_realizacao;
+            rodada.innerText = response.nome;
+        }
 
+        else{
 
-        nomeTimeEscritoMandante.innerText = response.partidas[i].time_mandante.sigla;
-        nomeTimeEscritoVisitante.innerText = response.partidas[i].time_visitante.sigla;
-        dataJogos.innerText = response.partidas[i].data_realizacao;
-        localJogos.innerText = response.partidas[i].estadio.nome_popular;
-        horaJogos.innerText = response.partidas[i].hora_realizacao;
-        rodada.innerText = response.nome;
-        placarTimeMandante.innerText = response.partidas[i].placar_mandante;
-        placarTimeVisitante.innerText = response.partidas[i].placar_visitante;
-        resultadoJogo.innerText = "veja como foi";
+            nomeTimeEscritoMandante.innerText = response.partidas[i].time_mandante.sigla;
+            nomeTimeEscritoVisitante.innerText = response.partidas[i].time_visitante.sigla;
+            dataJogos.innerText = response.partidas[i].data_realizacao;
+            localJogos.innerText = response.partidas[i].estadio.nome_popular;
+            horaJogos.innerText = response.partidas[i].hora_realizacao;
+            rodada.innerText = response.nome;
+            placarTimeMandante.innerText = response.partidas[i].placar_mandante;
+            placarTimeVisitante.innerText = response.partidas[i].placar_visitante;
+            resultadoJogo.innerText = "veja como foi";
+        }
 
+        if(response.rodada == 1){
+            let seteaEsquerda = document.getElementById("seteaEsquerda");
+            seteaEsquerda.classList.add("navegacao_jogos_seta_limit");
+        }
+
+        if(response.rodada == 38){
+            let seteaEsquerda = document.getElementById("seteaEsquerda");
+            seteaEsquerda.classList.add("navegacao_jogos_seta_limit");
+        }
 
         if (response.partidas[i].status === "finalizado") {
             lista_jogos.appendChild(lista);
@@ -271,13 +433,9 @@ function populaOutraTabela(response) {
     }
 }
 
-
-
-function previewTable() {
-
-    buscaInformacoesRodada();
+function limpaTabela(){
+    lista_jogos.innerText = "";
 }
-
 
 let ativado = false;
 
@@ -311,70 +469,5 @@ function gerarNumeroAleatorioDeUmATres() {
     return Math.floor(Math.random() * 3) + 1;
 }
 
-function buscaInformacoesRodada() {
-    $.ajax({
 
-        type: "GET",
-        url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas",
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
-        contentType: 'json',
-        dataType: 'json',
-        success: function (response) {
-            //Se a solicitação for feita com sucesso, a resposta representará os dados
-            tabela(response);
-        },
-        done: function (msg) {
-
-        },
-        error: function (msg) {
-
-        }
-    });
-
-
-
-    function tabela(response) {
-        for (let i = 0; i <= response.length; i++) {
-
-
-            if (response[i].status === "agendada") {
-                populaOutraTabela(response);
-            }
-
-
-
-            else if (response[i].status === "encerrada") {
-
-                $.ajax({
-
-                    type: "GET",
-                    url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas" + response[i].rodada,
-                    headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
-                    contentType: 'json',
-                    dataType: 'json',
-                    success: function (response) {
-                        //Se a solicitação for feita com sucesso, a resposta representará os dados
-                        populaOutraTabela(response);
-                    },
-                    done: function (msg) {
-
-                    },
-                    error: function (msg) {
-
-                    }
-                });
-
-            }
-
-
-
-            
-
-            else if (response[i].status === "andamento") {
-                populaOutraTabela(response);
-
-            }
-        }
-
-    }
-}
+//live_1e33b39956b21096d4a2f15c456e00

@@ -271,14 +271,18 @@ li {
     font-weight: 700;
 }
 
-.navegacao_direita_jogos {
+.navegacao_jogos_seta {
     color: #06aa48;
     cursor: pointer;
     text-align: right;
     width: 40px;
-
+    cursor: pointer;
 }
 
+.navegacao_jogos_seta_limit{
+    opacity: 0.2;
+    cursor: not-allowed;
+}
 
 
 
