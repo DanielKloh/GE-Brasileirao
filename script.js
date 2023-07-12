@@ -2,7 +2,9 @@ window.onload = function () {
 
     buscaInformacoesTabela();
 
-    buscaDadosRodada(15);
+    buscaIdRodada();
+
+    tabelaArtilharia();
 }
 
 function buscaInformacoesTabela() {
@@ -10,7 +12,7 @@ function buscaInformacoesTabela() {
 
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/tabela",
-        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -27,16 +29,63 @@ function buscaInformacoesTabela() {
     });
 }
 
+function buscaIdRodada() {
+
+    $.ajax({
+        type: "GET",
+        url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas",
+        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        contentType: 'json',
+        dataType: 'json',
+        success: function (response) {
+
+            let posicao = 1;
+            for (let i = 0; i < response.length; i++) {
+ 
+                if (response[i].status === "encerrada") {
+                    posicao += 1;
+                }
+            } 
+
+            buscaDadosRodada(posicao);
+        },
+        done: function (msg) {
+
+        },
+        error: function (msg) {
+
+        }
+    });
+}
 
 function buscaDadosRodada(rodadaId) {
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + rodadaId,
-        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
             populaTabelaJogos(response);
+        },
+        done: function (msg) {
+
+        },
+        error: function (msg) {
+
+        }
+    });
+}
+
+function tabelaArtilharia() {
+    $.ajax({
+        type: "GET",
+        url: "https://api.api-futebol.com.br/v1/campeonatos/10/artilharia",
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        contentType: 'json',
+        dataType: 'json',
+        success: function (response) {
+            montaTabelaArtilharia(response);
         },
         done: function (msg) {
 
@@ -62,6 +111,7 @@ function proximaRodada() {
         buscaDadosRodada(proximaRodada);
     }
 }
+
 
 //função que monta a tabela da classificação
 function populaTabelaClassificacao(response) {
@@ -194,6 +244,7 @@ function populaTabelaClassificacao(response) {
     }
 }
 
+
 //função que monta a tabela dos jogso
 function populaTabelaJogos(response) {
 
@@ -232,7 +283,7 @@ function populaTabelaJogos(response) {
     }
 
 
-    //monta a tabela da tabela das rodadas
+    //monta a tabela  das rodadas
     for (let i = 0; i < response.partidas.length; i++) {
 
 
@@ -347,6 +398,70 @@ function populaTabelaJogos(response) {
         }
 
     }
+}
+
+
+//função que monta a tabela dos artilheiros
+function montaTabelaArtilharia(response) {
+
+    let rankingJogadorGols = 0;
+    for (let i = 0; i < response.length; i++) {
+
+        let tabelaArtilharia = document.getElementById("tabelaArtilharia");
+        let tr = document.createElement("tr");
+        let rankingJogador = document.createElement("td");
+        let containerLogoTime = document.createElement("td");
+        let logoTime = document.createElement("img");
+        let containerJogadorInfo = document.createElement("td");
+        let nomeJogador = document.createElement("div");
+        let posicaoJogador = document.createElement("div");
+        let gols = document.createElement("td");
+
+
+        rankingJogador.setAttribute("class", "celula_tabela_jogadores classificacao_jogador");
+        if (i == 0) {
+            rankingJogador.innerText = "1";
+            rankingJogadorGols += 1;
+        }
+
+        else if (response[i].gols < response[i - 1].gols) {
+            rankingJogadorGols += 1;
+            rankingJogador.innerText = rankingJogadorGols;
+        }
+
+        containerLogoTime.setAttribute("class", "celula_tabela_jogadores");
+        logoTime.setAttribute("class", "imagem_logo_time");
+        logoTime.setAttribute("src", response[i].time.escudo);
+        containerJogadorInfo.setAttribute("class", "jogador_info");
+        nomeJogador.setAttribute("class", "nome_jogador");
+        nomeJogador.innerText = response[i].atleta.nome_popular;
+        posicaoJogador.setAttribute("class", "nome_posicao");
+
+        if (response[i].atleta.posicao.nome != null) {
+            posicaoJogador.innerText = response[i].atleta.posicao.nome;
+        }
+        else {
+            posicaoJogador.innerText = "-";
+        }
+
+        gols.setAttribute("class", "celula_tabela_jogadores gols");
+        gols.innerText = response[i].gols;
+
+
+
+        tabelaArtilharia.appendChild(tr);
+        tr.appendChild(rankingJogador);
+        tr.appendChild(containerLogoTime);
+        containerLogoTime.appendChild(logoTime);
+        tr.appendChild(containerJogadorInfo);
+        containerJogadorInfo.appendChild(nomeJogador);
+        containerJogadorInfo.appendChild(posicaoJogador);
+        tr.appendChild(gols);
+
+    }
+
+
+
 }
 
 
