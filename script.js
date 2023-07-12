@@ -7,12 +7,13 @@ window.onload = function () {
     tabelaArtilharia();
 }
 
+//função que monta a tabela de classificação
 function buscaInformacoesTabela() {
     $.ajax({
 
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/tabela",
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -29,12 +30,14 @@ function buscaInformacoesTabela() {
     });
 }
 
+
+//funções que montam a tabela dos jogos
 function buscaIdRodada() {
 
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas",
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -42,11 +45,12 @@ function buscaIdRodada() {
             let posicao = 1;
             for (let i = 0; i < response.length; i++) {
  
-                if (response[i].status === "encerrada") {
-                    posicao += 1;
+                if (response[i].status === "agendada") {
+                    posicao = response[i].rodada;
+                    break;
                 }
-            } 
 
+            }
             buscaDadosRodada(posicao);
         },
         done: function (msg) {
@@ -62,7 +66,7 @@ function buscaDadosRodada(rodadaId) {
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + rodadaId,
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -77,6 +81,8 @@ function buscaDadosRodada(rodadaId) {
     });
 }
 
+
+//funções que montam a tabela da artilharia
 function tabelaArtilharia() {
     $.ajax({
         type: "GET",
@@ -95,6 +101,7 @@ function tabelaArtilharia() {
         }
     });
 }
+
 
 //função que chama a rodada anterior
 function rodadaAnterior() {
@@ -494,6 +501,56 @@ function abrir_menu() {
 function fehecar_menu() {
     document.getElementById("show_menu").style.width = "0px";
     document.getElementById("fundo").classList.remove("show_fundo");
+}
+
+
+
+//função para exibir os times da seire A
+function serieA(){
+
+    let serieA = document.getElementById("serieA");
+    serieA.classList.add("serieAtual");
+    serieA.classList.remove("serieNaoAtual");
+
+    let serieB = document.getElementById("serieB");
+    serieB.classList.add("serieNaoAtual");
+    serieB.classList.remove("serieAtual");
+
+    let serieC = document.getElementById("serieC");
+    serieC.classList.remove("serieAtual");
+    serieC.classList.add("serieNaoAtual");
+}
+
+//função para exibir os times da seire B
+function serieB(){
+
+    let serieB = document.getElementById("serieB");
+    serieB.classList.add("serieAtual");
+    serieB.classList.remove("serieNaoAtual");
+
+    let serieA = document.getElementById("serieA");
+    serieA.classList.add("serieNaoAtual");
+    serieA.classList.remove("serieAtual");
+
+    let serieC = document.getElementById("serieC");
+    serieC.classList.add("serieNaoAtual");
+    serieC.classList.remove("serieAtual");
+
+}
+
+//função para exibir os times da seire C
+function serieC(){
+    let serieC = document.getElementById("serieC");
+    serieC.classList.add("serieAtual");
+    serieC.classList.remove("serieNaoAtual");
+
+    let serieB = document.getElementById("serieB");
+    serieB.classList.add("serieNaoAtual");
+    serieB.classList.remove("serieAtual");
+
+    let serieA = document.getElementById("serieA");
+    serieA.classList.add("serieNaoAtual");
+    serieA.classList.remove("serieAtual");
 }
 
 

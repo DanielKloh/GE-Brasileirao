@@ -83,9 +83,9 @@
 
                     <nav class="mosaico_label_conteiner" style="margin-top: 5px;">
 
-                        <div class="mosaico_label">SÉRIE A</div>
-                        <div class="mosaico_label">SÉRIE B</div>
-                        <div class="mosaico_label">SÉRIE C</div>
+                        <div class="mosaico_label" onclick="serieA()">SÉRIE A</div>
+                        <div class="mosaico_label" onclick="serieB()">SÉRIE B</div>
+                        <div class="mosaico_label" onclick="serieC()">SÉRIE C</div>
 
                     </nav>
 
@@ -143,7 +143,7 @@
                         </div>
                     </li>
 
-                    <li id="serieB" class="serieB">
+                    <li id="serieB" class="serieNaoAtual">
                         <div class="mosaico_image_conteiner">
                             <img src="https://s.sde.globo.com/media/organizations/2018/03/10/atletico-mg.svg"
                                 class="logo_time_mosaico">
@@ -199,7 +199,7 @@
 
                     </li>
 
-                    <li id="serieC" class="serieC">
+                    <li id="serieC" class="serieNaoAtual">
                         <div class="mosaico_image_conteiner">
                             <img src="https://s.sde.globo.com/media/organizations/2018/03/11/fluminense.svg"
                                 class="logo_time_mosaico">
@@ -285,7 +285,7 @@
 
         <section>
 
-            <!-- tabela dos jogos -->
+            <!-- tabela dos jogos e classificação -->
 
             <article class="tabela_classificacao_jogos">
 
@@ -326,11 +326,12 @@
                             </thead>
 
                             <tbody id="tabela_resultados">
-
                             </tbody>
+
                         </table>
                     </div>
 
+                    <!-- legenda tabelta classifcação -->
                     <div class="legenda">
                         <div class="legenda_campeonato">
                             <div class="legenda_campeonato_resltado">
@@ -398,29 +399,34 @@
                     </div>
 
                 </div>
+
+
                 <div class="tabela_jogos">
 
                     <h2 class="tabela_titulo">JOGOS</h2>
 
                     <div>
                         <nav class="navegacao_jogos">
-                            <span id="seteaEsquerda" ondblclick="rodadaAnterior()" class="navegacao_jogos_seta"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" fill="currentColor" class="bi bi-chevron-left" viewBox="0 0 16 16">
+                            <span id="seteaEsquerda" onclick="rodadaAnterior()" class="navegacao_jogos_seta"> <svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-chevron-left" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
                                 </svg> </span>
 
                             <div class="navegacao_texto_jogos" id="rodada"></div>
 
-                            <span onclick="proximaRodada()" class="navegacao_jogos_seta"> <svg xmlns="http://www.w3.org/2000/svg" width="16"
-                                    height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                            <span onclick="proximaRodada()" id="seteaDireita" class="navegacao_jogos_seta"> <svg
+                                    xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-chevron-right" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd"
                                         d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                                 </svg></span>
                         </nav>
+                        
                         <input type="hidden" id="proximaRodada">
                         <input type="hidden" id="rodadaAnterior">
-                        
+
                         <ul id="lista_jogos" class="lista_jogos">
                         </ul>
                     </div>
@@ -444,131 +450,11 @@
                     <table class="tabela_jogadores">
 
                         <thead>
-                            <th class="celula_tabela_classificacao_titulo" colspan="4">RANKING</th>
+                            <th class="celula_tabela_classificacao_titulo" colspan="3">RANKING</th>
                             <th class="celula_tabela_classificacao_titulo" colspan="1">gols</th>
                         </thead>
 
-                        <tbody>
-                            <tr>
-                                <td class=" celula_tabela_jogadores classificacao_jogador">1</td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_jogador"
-                                        src="https://s.sde.globo.com/media/person_role/2023/02/28/photo_140x140_ZXUGzef.png"
-                                        alt="imagem do jogador">
-                                </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_logo_time"
-                                        src="https://s.sde.globo.com/media/organizations/2018/03/11/bahia.svg"
-                                        alt="imagem do time">
-                                </td>
-                                <td class="jogador_info">
-                                    <div class=" nome_jogador">Robson</div>
-                                    <div class=" nome_posicao">ATACANTE</div>
-                                </td>
-
-                                <td class="celula_tabela_jogadores gols">3</td>
-                            </tr>
-
-                            <tr>
-                                <td class=" celula_tabela_jogadores classificacao_jogador">2</td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_jogador"
-                                        src="https://s.sde.globo.com/media/person_role/2023/03/07/photo_140x140_6MBfhJT.png"
-                                        alt="imagem do jogador">
-                                </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_logo_time"
-                                        src="https://s.sde.globo.com/media/organizations/2019/02/04/botafogo-svg.svg"
-                                        alt="imagem do time">
-                                </td>
-                                <td class="jogador_info">
-                                    <div class=" nome_jogador">Robson</div>
-                                    <div class=" nome_posicao">ATACANTE</div>
-                                </td>
-
-                                <td class="celula_tabela_jogadores gols">3</td>
-                            </tr>
-
-                            <tr>
-                                <td class=" celula_tabela_jogadores classificacao_jogador">3</td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_jogador"
-                                        src="https://s.sde.globo.com/media/person_role/2023/03/15/photo_140x140_M92YyJ2.png"
-                                        alt="imagem do jogador">
-                                </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_logo_time"
-                                        src="https://s.sde.globo.com/media/organizations/2014/04/14/palmeiras_60x60.png"
-                                        alt="imagem do time">
-                                </td>
-                                <td class="jogador_info">
-                                    <div class=" nome_jogador">Rafael Vieira</div>
-                                    <div class=" nome_posicao">MEIO CAMPO</div>
-                                </td>
-
-                                <td class="celula_tabela_jogadores gols">3</td>
-                            </tr>
-
-                            <tr>
-                                <td class=" celula_tabela_jogadores classificacao_jogador">4</td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_jogador"
-                                        src="https://s.sde.globo.com/media/person_role/2023/03/07/photo_140x140_htDehpE.png"
-                                        alt="imagem do jogador">
-                                </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_logo_time"
-                                        src="https://s.sde.globo.com/media/organizations/2019/02/28/escudo65_1.png"
-                                        alt="imagem do time">
-                                </td>
-                                <td class="jogador_info">
-                                    <div class=" nome_jogador">Alison</div>
-                                    <div class=" nome_posicao">ATACANTE</div>
-                                </td>
-
-                                <td class="celula_tabela_jogadores gols">3</td>
-                            </tr>
-
-                            <tr>
-                                <td class=" celula_tabela_jogadores classificacao_jogador">5 </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_jogador"
-                                        src="https://s.sde.globo.com/media/person_role/2023/04/11/photo_140x140_k5qETJy.png"
-                                        alt="imagem do jogador">
-                                </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_logo_time"
-                                        src="https://s.sde.globo.com/media/organizations/2018/04/09/Flamengo-65.png"
-                                        alt="imagem do time">
-                                </td>
-                                <td class="jogador_info">
-                                    <div class=" nome_jogador">Léo Pereira</div>
-                                    <div class=" nome_posicao">ZAGUEIRO ESQUERDO</div>
-                                </td>
-
-                                <td class="celula_tabela_jogadores gols">3</td>
-                            </tr>
-
-                            <tr>
-                                <td class=" celula_tabela_jogadores classificacao_jogador">2</td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_jogador"
-                                        src="https://s.sde.globo.com/media/person_role/2023/03/07/photo_140x140_6MBfhJT.png"
-                                        alt="imagem do jogador">
-                                </td>
-                                <td class="celula_tabela_jogadores">
-                                    <img class="imagem_logo_time"
-                                        src="https://s.sde.globo.com/media/organizations/2018/03/11/bahia.svg"
-                                        alt="imagem do time">
-                                </td>
-                                <td class="jogador_info">
-                                    <div class=" nome_jogador">Robson</div>
-                                    <div class=" nome_posicao">ATACANTE</div>
-                                </td>
-
-                                <td class="celula_tabela_jogadores gols">3</td>
-                            </tr>
-
+                        <tbody id="tabelaArtilharia">
                         </tbody>
                     </table>
                 </div>
@@ -577,49 +463,44 @@
 
     </main>
 
+
     <footer>
 
-        <section>
+        <div class="conteiner_footer">
 
-            <div class="conteiner_footer">
+            <div>
+
+                <div class="diretorion_footer_esquerda">
+                    <img src="image/GE.jpg" alt="">
+                    <span class="footer_texto">times</span>
+                    <div class="v-separator"></div>
+                    <span class="footer_texto">seleções</span>
+                    <div class="v-separator"></div>
+                    <span class="footer_texto">esportes</span>
+                </div>
 
                 <div>
-
-                    <div class="diretorion_footer_esquerda">
-                        <img src="image/GE.jpg" alt="">
-                        <span class="footer_texto">times</span>
-                        <div class="v-separator"></div>
-                        <span class="footer_texto">seleções</span>
-                        <div class="v-separator"></div>
-                        <span class="footer_texto">esportes</span>
-                    </div>
-
-                    <div>
-                        <a class="footer_texto_link" href="https://github.com/DanielKloh">© Copyright 2023 Daniel
-                            Kloh</a>
-                    </div>
-                </div>
-
-
-
-
-                <div class="diretorion_footer_direita">
-
-                    <div class="footer_texto">globo</div>
-
-                    <div class="footer_direita">
-                        <span class="footer_texto">principais editorias</span>
-                        <div class="v-separator"></div>
-                        <span class="footer_texto">política de privacidade</span>
-                        <div class="v-separator"></div>
-                        <span class="footer_texto">minha conta</span>
-                        <div class="v-separator"></div>
-                        <span class="footer_texto">anuncie conosco</span>
-
-                    </div>
+                    <a class="footer_texto_link" href="https://github.com/DanielKloh">© Copyright 2023 Daniel
+                        Kloh</a>
                 </div>
             </div>
-        </section>
+
+            <div class="diretorion_footer_direita">
+
+                <div class="footer_texto">globo</div>
+
+                <div class="footer_direita">
+                    <span class="footer_texto">principais editorias</span>
+                    <div class="v-separator"></div>
+                    <span class="footer_texto">política de privacidade</span>
+                    <div class="v-separator"></div>
+                    <span class="footer_texto">minha conta</span>
+                    <div class="v-separator"></div>
+                    <span class="footer_texto ">anuncie conosco</span>
+
+                </div>
+            </div>
+        </div>
 
     </footer>
 

@@ -1,6 +1,5 @@
 footer {
     background-color: #06aa48;
-
 }
 
 .conteiner_footer {
@@ -27,7 +26,8 @@ footer {
 .footer_texto {
     color: #fff;
     padding: 0 10px;
-
+    padding: 10px;
+    background-color: #06aa48;
 }
 
 .footer_texto_link {
@@ -35,6 +35,9 @@ footer {
     text-decoration: none;
 }
 
+.tampaBuraco {
+    padding-right: 500px;
+}
 
 .diretorion_footer_direita {
     text-align: right;
@@ -71,6 +74,7 @@ footer {
 
     .diretorion_footer_direita {
         text-align: left;
+        width: 100%;
     }
 
     .footer_direita {

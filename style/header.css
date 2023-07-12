@@ -45,6 +45,14 @@ header{
 }
 
 
+.seieAtual{
+    display: flex;
+}
+.serieNaoAtual{
+    display: none;
+}
+
+
 
 
 .conteiner_link {
