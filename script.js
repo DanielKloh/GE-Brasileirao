@@ -13,7 +13,7 @@ function buscaInformacoesTabela() {
 
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/tabela",
-        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -37,14 +37,14 @@ function buscaIdRodada() {
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas",
-        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
 
             let posicao = 1;
             for (let i = 0; i < response.length; i++) {
- 
+
                 if (response[i].status === "agendada") {
                     posicao = response[i].rodada;
                     break;
@@ -66,7 +66,7 @@ function buscaDadosRodada(rodadaId) {
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + rodadaId,
-        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
+        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -135,7 +135,21 @@ function populaTabelaClassificacao(response) {
         let resultadoConteiner = document.createElement("td");
         let resultadoIcon = document.createElement("img");
 
-        identificador.setAttribute("class", "celula_tabela_classificacao_numero_azul");
+        if (i < 4) {
+            identificador.setAttribute("class", "celula_tabela_classificacao_numero_azul");
+        }
+        else if (i < 6) {
+            identificador.setAttribute("class", "celula_tabela_classificacao_numero_azul_claro");
+        }
+        else if (i < 12) {
+            identificador.setAttribute("class", "celula_tabela_classificacao_numero_verde");
+        }
+        else if (i < 16) {
+            identificador.setAttribute("class", "celula_tabela_classificacao_numero_cinza");
+        }
+        else if (i < 20) {
+            identificador.setAttribute("class", "celula_tabela_classificacao_numero_vermelho");
+        }
         nomeTime.setAttribute("class", "celula_tabela_classificacao_time");
         pontuacao.setAttribute("class", "celula_tabela_classificacao_pontuacao");
         logoTime.setAttribute("src", response[i].time.escudo); //
@@ -208,15 +222,15 @@ function populaTabelaClassificacao(response) {
         ultimosJogos.setAttribute("class", "celula_pontos_bolinha");
 
 
-        pontso.innerText = response[i].pontos; //
-        jogos.innerText = response[i].jogos; //
-        vitorias.innerText = response[i].vitorias; //
-        empates.innerText = response[i].empates; //
-        derrotas.innerText = response[i].derrotas; //
-        golsPro.innerText = response[i].gols_pro; //
-        golsContra.innerText = response[i].gols_contra; //
-        saldoGols.innerText = response[i].saldo_gols; //
-        aproveitamento.innerText = response[i].aproveitamento; //
+        pontso.innerText = response[i].pontos;
+        jogos.innerText = response[i].jogos;
+        vitorias.innerText = response[i].vitorias;
+        empates.innerText = response[i].empates;
+        derrotas.innerText = response[i].derrotas;
+        golsPro.innerText = response[i].gols_pro;
+        golsContra.innerText = response[i].gols_contra;
+        saldoGols.innerText = response[i].saldo_gols;
+        aproveitamento.innerText = response[i].aproveitamento;
 
 
         tabela_resultados.appendChild(linha);
@@ -412,6 +426,7 @@ function populaTabelaJogos(response) {
 function montaTabelaArtilharia(response) {
 
     let rankingJogadorGols = 0;
+
     for (let i = 0; i < response.length; i++) {
 
         let tabelaArtilharia = document.getElementById("tabelaArtilharia");
@@ -426,6 +441,9 @@ function montaTabelaArtilharia(response) {
 
 
         rankingJogador.setAttribute("class", "celula_tabela_jogadores classificacao_jogador");
+
+
+
         if (i == 0) {
             rankingJogador.innerText = "1";
             rankingJogadorGols += 1;
@@ -435,6 +453,9 @@ function montaTabelaArtilharia(response) {
             rankingJogadorGols += 1;
             rankingJogador.innerText = rankingJogadorGols;
         }
+
+
+
 
         containerLogoTime.setAttribute("class", "celula_tabela_jogadores");
         logoTime.setAttribute("class", "imagem_logo_time");
@@ -506,7 +527,7 @@ function fehecar_menu() {
 
 
 //função para exibir os times da seire A
-function serieA(){
+function serieA() {
 
     let serieA = document.getElementById("serieA");
     serieA.classList.add("serieAtual");
@@ -522,7 +543,7 @@ function serieA(){
 }
 
 //função para exibir os times da seire B
-function serieB(){
+function serieB() {
 
     let serieB = document.getElementById("serieB");
     serieB.classList.add("serieAtual");
@@ -539,7 +560,7 @@ function serieB(){
 }
 
 //função para exibir os times da seire C
-function serieC(){
+function serieC() {
     let serieC = document.getElementById("serieC");
     serieC.classList.add("serieAtual");
     serieC.classList.remove("serieNaoAtual");
