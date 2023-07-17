@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Brasileirão</title>
-    
+
     <link rel="stylesheet" href="style/header.css">
     <link rel="stylesheet" href="style/tabela.css">
     <link rel="stylesheet" href="style/footer.css">
@@ -397,8 +397,25 @@
                         </div>
                     </div>
 
-                    <div id="regulamento" onclick="regulamento()">
-                        <p class="texto_regulamento">ver regulamento</p>
+                    <div onclick="abrirRegulamento()" class="texto_regulamento">Regulamento</div>
+                    <div id="regulamento-caixa" class="regulamento-caixa">
+                        <div class="regulamento-conteudo">
+                            <svg onclick="fecharRegulamento()" class="regulamento-fechar" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                                <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"/>
+                            </svg>
+                            <div class="regulamento-scroll">
+                                <h2 class="regulamento-titulo">Regulamento</h2>
+                                <div class="regulamento-texto">
+                                    As 20 equipes se enfrentam em turno e returno e, ao fim das 38 rodadas, o time com o maior número de pontos
+                                    fica com o título brasileiro, enquanto os quatro últimos são rebaixados para a Série B. Em caso de igualdade 
+                                    na pontuação, são critérios de desempate: 1) mais vitórias, 2) melhor saldo de gols, 3) mais gols pró, 
+                                    4) confronto direto, 5) menos cartões vermelhos, 6) menos cartões amarelos, 7) sorteio. 
+                                    Os quatro primeiros entram na fase de grupos da Libertadores, enquanto o quinto e o sexto colocados disputam 
+                                    as fases prévias da Libertadores. Caso o campeão da Libertadores e/ou o campeão da Copa do Brasil e/ou o campeão 
+                                    da Sul-Americana estejam no G-6, a equipe seguinte garante vaga na competição continental.
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
@@ -426,7 +443,7 @@
                                         d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
                                 </svg></span>
                         </nav>
-                        
+
                         <input type="hidden" id="proximaRodada">
                         <input type="hidden" id="rodadaAnterior">
 

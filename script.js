@@ -13,7 +13,7 @@ function buscaInformacoesTabela() {
 
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/tabela",
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -37,7 +37,7 @@ function buscaIdRodada() {
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas",
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -66,7 +66,7 @@ function buscaDadosRodada(rodadaId) {
     $.ajax({
         type: "GET",
         url: "https://api.api-futebol.com.br/v1/campeonatos/10/rodadas/" + rodadaId,
-        headers: { 'Authorization': 'Bearer live_1e33b39956b21096d4a2f15c456e00' },
+        headers: { 'Authorization': 'Bearer test_7255889716ac0340867b5691a18535' },
         contentType: 'json',
         dataType: 'json',
         success: function (response) {
@@ -522,6 +522,20 @@ function abrir_menu() {
 function fehecar_menu() {
     document.getElementById("show_menu").style.width = "0px";
     document.getElementById("fundo").classList.remove("show_fundo");
+}
+
+
+
+//funções para abrir e fexar o regulamento
+function abrirRegulamento(){
+    document.getElementById("regulamento-caixa").style.display = "block";
+    document.getElementById("regulamento-caixa").style.width = "100%";
+    document.getElementById("regulamento-caixa").style.height = "100%";
+}
+
+function fecharRegulamento(){
+    document.getElementById("regulamento-caixa").style.display = "none";
+    document.getElementById("regulamento-caixa").classList.add("regulamentoFechado");
 }
 
 
