@@ -39,7 +39,7 @@ header{
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.205);
-    position: absolute;
+    position: fixed;
     z-index: 999;
     display: none;
 }
